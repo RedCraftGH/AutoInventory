@@ -9,6 +9,9 @@ use pocketmine\event\Listener;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\utils\TextFormat;
 use pocketmine\inventory\PlayerInventory;
+use pocketmine\item\Item;
+use pocketmine\Player;
+use pocketmine\Server;
 
 class Main extends PluginBase implements Listener {
 
@@ -36,11 +39,14 @@ class Main extends PluginBase implements Listener {
   public function onBreak(BlockBreakEvent $event) {
 
     $player = $event->getPlayer();
-    $blockBroken = $event->getBlock()->getName();
-
-    $player->sendMessage(TextFormat::RED . $player->getDisplayName() . TextFormat::WHITE . " has broken " . strtolower($blockBroken));
-
-    return true;
+    $blockName = $event->getBlock()->getName();
+    $blockBroken = $event->getBlock();
+    $blockID = $blockBroken->getID();
+    $blockDamage = $blockBroken->getDamage();
+    $item = Item::get($blockID, $blockDamage, 1);
+    
+    $event->setDrops(null);
+    $player->getInventory()->addItem($item);
 
   }
 
