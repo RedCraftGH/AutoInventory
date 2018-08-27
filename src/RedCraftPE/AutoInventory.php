@@ -13,7 +13,7 @@ use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\Server;
 
-class Main extends PluginBase implements Listener {
+class AutoInventory extends PluginBase implements Listener {
 
   public $prefix = TextFormat::YELLOW . "Cube" . TextFormat::BLUE . "X" . TextFormat::GOLD . " > ";
 
