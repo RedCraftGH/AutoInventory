@@ -45,7 +45,7 @@ class AutoInventory extends PluginBase implements Listener {
     $blockDamage = $blockBroken->getDamage();
     $item = Item::get($blockID, $blockDamage, 1);
     
-    $event->setDrops(null);
+    $event->setDrops(array(Item::get(0)));
     $player->getInventory()->addItem($item);
 
   }
