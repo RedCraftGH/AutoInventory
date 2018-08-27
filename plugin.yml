@@ -1,0 +1,5 @@
+name: AutoInventory
+author: RedCraftPE
+version: 1.0.0-Beta
+api: 3.0.0
+main: RedCraftPE\AutoInventory
