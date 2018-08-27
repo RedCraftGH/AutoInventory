@@ -38,15 +38,15 @@ class AutoInventory extends PluginBase implements Listener {
 
   public function onBreak(BlockBreakEvent $event) {
 
-    $player = $event->getPlayer();
-    $blockName = $event->getBlock()->getName();
-    $blockBroken = $event->getBlock();
-    $blockID = $blockBroken->getID();
-    $blockDamage = $blockBroken->getDamage();
-    $item = Item::get($blockID, $blockDamage, 1);
+    $drops = $event->getDrops();
+    $itemID = $event->getBlock()->getID();
+    $itemDamage = $event->getBlock()->getDamage();
+    
+    foreach($drops as $drop) {
+      $event->getPlayer()->getInventory()->addItem($drop);
+    }
    
-    $event->setDrops(array(Item::get(1, 1, 0)));
-    $player->getInventory()->addItem($item);
+    $event->setDrops([]);
 
   }
 
